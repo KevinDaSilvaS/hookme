@@ -12,7 +12,7 @@ defmodule Hookme.Application do
       # {Hookme.Worker, arg}
       Hookme.Keeper,
       {Hookme.Sender, ""},
-      {Hookme.Entrypoint, ""},
+      {Hookme.Entrypoint, ""}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html

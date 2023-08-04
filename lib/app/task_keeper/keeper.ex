@@ -10,6 +10,6 @@ defmodule Hookme.Keeper do
   end
 
   def add_task(task) do
-    Agent.update(__MODULE__, &([task | &1]))
+    Agent.update(__MODULE__, &[task | &1])
   end
 end

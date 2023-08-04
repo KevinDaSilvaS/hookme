@@ -1,5 +1,4 @@
 defmodule App.Validators.EntrypointValidators do
-
   def sanitize_input(input), do: String.replace(input, "\n", "")
 
   def validate_proceed("Y"), do: true
