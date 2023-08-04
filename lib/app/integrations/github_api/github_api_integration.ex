@@ -1,2 +1,2 @@
-defmodule App.Integrations.GithubApi.GithubApiIntegration do
+defmodule Integrations.GithubApiIntegration do
 end
