@@ -4,19 +4,19 @@ defmodule Server.Router do
   import Plug.Conn
   alias Server.Validators.TaskValidators
 
-  plug :match
-  plug :dispatch
-  plug Plug.Parsers,
-       parsers: [:json],
-       pass: ["application/json"], json_decoder: Jason
+  plug(:match)
+  plug(:dispatch)
+  plug(Plug.Parsers, parsers: [:json], pass: ["application/json"], json_decoder: Jason)
 
   post "/task" do
     {:ok, req_body, conn} = Plug.Conn.read_body(conn, opts)
-    {result, body} = Jason.decode!(req_body) |>TaskValidators.map_fields()
+    {result, body} = Jason.decode!(req_body) |> TaskValidators.map_fields()
+
     case result do
       :error ->
         code = Map.get(body, :code)
         response(conn, code, Jason.encode!(body))
+
       :ok ->
         Hookme.Sender.send_info(body)
         response(conn, 200, Jason.encode!(%{dt: "world"}))
