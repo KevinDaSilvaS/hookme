@@ -5,6 +5,8 @@ defmodule Hookme.Application do
 
   use Application
 
+  HTTPoison.start
+
   @impl true
   def start(_type, _args) do
     children = [
