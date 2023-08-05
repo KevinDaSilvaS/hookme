@@ -1,15 +1,24 @@
 defmodule Hookme.Keeper do
   use Agent
+  @me __MODULE__
 
   def start_link(_) do
-    Agent.start_link(fn -> [] end, name: __MODULE__)
+    Agent.start_link(fn -> %{} end, name: @me)
   end
 
   def get_tasks do
-    Agent.get(__MODULE__, & &1)
+    Agent.get(@me, & &1)
   end
 
-  def add_task(task) do
-    Agent.update(__MODULE__, &[task | &1])
+  def get_one_task(key) do
+    Agent.get(@me, &Map.get(&1, key))
+  end
+
+  def add_task(key, task) do
+    Agent.update(@me, &Map.put(&1, key, task))
+  end
+
+  def remove_task(key) do
+    Agent.update(@me, &Map.delete(&1, key))
   end
 end
