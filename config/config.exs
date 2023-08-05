@@ -12,7 +12,8 @@ config :hookme, Hookme.Sender,
     |> String.to_integer()
 
 config :hookme, Integrations.GithubApiIntegration,
-  api_url: System.get_env("API_URL", "https://api.github.com")
+  api_url: System.get_env("API_URL", "https://api.github.com"),
+  token: System.get_env("API_TOKEN", "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")
 
 config :hookme, Integrations.WebhookIntegration,
   webhook_url: System.get_env("WEBHOOK_URL", "https://api.github.com")
