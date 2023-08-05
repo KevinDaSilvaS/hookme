@@ -4,7 +4,10 @@ defmodule Integrations.GithubApiIntegration do
   @token Keyword.get(@config, :token)
 
   def headers() do
-    ["Authorization": "Bearer #{@token}"]
+    case @token do
+      "" -> []
+      _  -> ["Authorization": "Bearer #{@token}"]
+    end
   end
 
   def fetch_repo_data(username, repository) do
@@ -39,7 +42,6 @@ defmodule Integrations.GithubApiIntegration do
   defp get_issues(username, repository) do
     url = "#{@api_url}/repos/#{username}/#{repository}/issues"
     res = HTTPoison.get(url, headers())
-
     case res do
       {:ok, data} -> check_status_to_proceed(data)
         |> data_expected_format()
