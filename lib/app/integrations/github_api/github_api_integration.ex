@@ -48,7 +48,7 @@ defmodule Integrations.GithubApiIntegration do
     end
   end
 
-  defp map_issues(:skip), do: %{error: "issues in repository not found"}
+  defp map_issues(:skip), do: []
   defp map_issues(:error), do: :error
   defp map_issues(data) do
     Enum.map(data, fn issue ->
@@ -71,7 +71,7 @@ defmodule Integrations.GithubApiIntegration do
     end
   end
 
-  defp map_contributors(:skip), do: %{error: "contributors in repository not found"}
+  defp map_contributors(:skip), do: []
   defp map_contributors(:error), do: :error
   defp map_contributors(data) do
     Enum.map(data, fn contributor ->
