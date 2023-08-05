@@ -3,6 +3,7 @@ defmodule Hookme.Sender do
   use GenServer
 
   alias Integrations.GithubApiIntegration
+  alias Integrations.WebhookIntegration
 
   @config Application.compile_env(:hookme, Hookme.Sender)
   @schedule_interval Keyword.get(@config, :schedule_interval)
@@ -68,7 +69,12 @@ defmodule Hookme.Sender do
     {result, data} = GithubApiIntegration.fetch_repo_data(username, repository)
 
     case result do
-      :ok -> IO.inspect(data)
+      :ok ->
+        Logger.notice("Succesfully fetched data from github")
+        case WebhookIntegration.send_data_to_webhook(data) do
+          :ok -> Logger.notice("Webhook received data correctly")
+          _ -> retry_job(current_retry, username, repository)
+        end
       _ -> retry_job(current_retry, username, repository)
     end
   end

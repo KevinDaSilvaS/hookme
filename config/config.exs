@@ -16,4 +16,4 @@ config :hookme, Integrations.GithubApiIntegration,
   token: System.get_env("API_TOKEN", "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")
 
 config :hookme, Integrations.WebhookIntegration,
-  webhook_url: System.get_env("WEBHOOK_URL", "https://api.github.com")
+  webhook_url: System.get_env("WEBHOOK_URL", "https://webhook.site/61a356f2-a04b-4b9b-b1cb-96668d4727d9")
