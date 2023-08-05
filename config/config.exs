@@ -9,8 +9,10 @@ config :hookme, Hookme.Sender,
     |> String.to_integer(),
   max_retry:
     System.get_env("RETRY_MAX_ATTEMPTS", "3")
-    |> String.to_integer(),
+    |> String.to_integer()
 
-config :hookme, Integrations.GithubApiIntegration, api_url: System.get_env("API_URL", "")
+config :hookme, Integrations.GithubApiIntegration,
+  api_url: System.get_env("API_URL", "https://api.github.com")
 
-config :hookme, Integrations.WebhookIntegration, webhook_url: System.get_env("WEBHOOK_URL", "")
+config :hookme, Integrations.WebhookIntegration,
+  webhook_url: System.get_env("WEBHOOK_URL", "https://api.github.com")

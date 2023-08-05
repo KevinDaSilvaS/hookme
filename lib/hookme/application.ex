@@ -14,6 +14,7 @@ defmodule Hookme.Application do
       # {Hookme.Worker, arg}
       Hookme.Keeper,
       {Hookme.Sender, ""},
+      Integrations.Users,
       {Plug.Cowboy, scheme: :http, plug: Server.Router, options: [port: 4001]}
     ]
 
