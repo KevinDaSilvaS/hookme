@@ -19,7 +19,7 @@ defmodule Server.Router do
 
       :ok ->
         Hookme.Sender.send_info(body)
-        response(conn, 200, Jason.encode!(%{dt: "world"}))
+        response(conn, 200, Jason.encode!(%{ok: "task succesfully scheduled"}))
     end
   end
 
