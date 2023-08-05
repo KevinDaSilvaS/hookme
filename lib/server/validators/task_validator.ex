@@ -1,0 +1,12 @@
+defmodule Server.Validators.TaskValidators do
+  def map_fields(data) do
+    username = Map.get(data, "username")
+    repository = Map.get(data, "repository")
+
+    cond do
+      is_nil(username) -> {:error, %{code: 400, error: "field username is required"}}
+      is_nil(repository) -> {:error, %{code: 400, error: "field repository is required"}}
+      true -> {:ok, %{username: username, repository: repository}}
+    end
+  end
+end
