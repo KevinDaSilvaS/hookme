@@ -22,6 +22,7 @@ No arquivo docker-compose.yml existe uma série de variaveis que podemos usar pa
  - **WEBHOOK_URL** -> *A url do webhook para qual vamos mandar as informações nos jobs*
  - **API_URL** -> *Link para a api desejada, no caso o link da api do github*
  - **API_TOKEN** -> *Caso queira autenticar na api do github coloque o seu token de acesso aqui, caso queira usar a api do github sem autenticar apenas deixe essa variavel como: ""*
+ - **RATE_LIMIT_MAX_SIMULTANEOUS_JOBS** -> *Caso queira adicionar um rate limit para não permitir que a aplicação tenha mais de X jobs assincronos rodando sete a variavel para um numero inteiro de sua preferencia, caso não queira usar o rate limit apenas deixe essa variavel como: -1*
 
 ## Sobre os endpoints
 A aplicação possui apenas um endpoint */tasks* 
