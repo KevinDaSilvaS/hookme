@@ -35,7 +35,7 @@ A aplicação possui apenas um endpoint */tasks*
       ```
 
 ## Sobre o fluxo da arquitetura
-  ![architecture flow](https://raw.githubusercontent.com/KevinDaSilvaS/hookme/main/arch-complete.png?token=GHSAT0AAAAAAB5WVO6O7R5JSRNHA42DKT7WZGPVAWA "architecture flow")
+  ![architecture flow](./arch-complete.png "architecture flow")
   
 ## Sobre as escolhas tecnicas
 Quando surge o desafio de criar um serviço para agregar informações de uma serie de endpoint e envia-los de forma assincrona começamos a pensar nas tecnologias, e quais seriam o estado da arte e as primeiras que nos veem a mente são
