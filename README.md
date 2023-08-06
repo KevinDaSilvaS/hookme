@@ -1,21 +1,16 @@
 # Hookme
 
-**TODO: Add description**
-
-## Installation
-
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `hookme` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:hookme, "~> 0.1.0"}
-  ]
-end
+## Instalação
+  No projeto consta um arquivo docker-compose.yml caso possua o docker instalado basta rodar:
 ```
-
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at <https://hexdocs.pm/hookme>.
+docker-compose up -d --build
+```
+ Para rodar manualmente é necessario instalar as dependencias:
+ ```
+mix deps.get
+```
+E rodar:
+```
+mix run --no-halt
+```
 
