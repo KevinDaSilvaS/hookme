@@ -22,7 +22,6 @@ No arquivo docker-compose.yml existe uma série de variaveis que podemos usar pa
  - **WEBHOOK_URL** -> *A url do webhook para qual vamos mandar as informações nos jobs*
  - **API_URL** -> *Link para a api desejada, no caso o link da api do github*
  - **API_TOKEN** -> *Caso queira autenticar na api do github coloque o seu token de acesso aqui, caso queira usar a api do github sem autenticar apenas deixe essa variavel como: ""*
-  
 
 ## Sobre os endpoints
 A aplicação possui apenas um endpoint */tasks* 
@@ -52,3 +51,6 @@ Mas analisando mais cuidadosamente o problema fiz as seguintes perguntas:
      - Resposta: Não, na verdade a maneira mais simples e incremental seria usar o modulo Task e criar uma task assincrona para cada job e adicionar uma politica de retentativa caso uma task não consiga finalizar com sucesso o envio de dados para o webhook
  - Manter um caching de usuarios/repositorios para evitar ddos e tambem manter um caching de usuarios buscados na api do github é muito essencial para performance, mas precisamos iniciar com um ETS?
      - Resposta: Como não vamos iniciar de maneira mais robusta em mais de uma maquina podemos tomar uma abordagem de usar Agents para o controle de informações visto que é a finalidade desse modulo guardar estados e se necessario adicionar um maximo de jobs no cache
+
+## Validações extras
+  - [Impedir duplicadas] - Hoje se guarda cada job/task com uma chave *${username}/${repository}* com a intenção de impedir eventual ddos de multiplos jobs para o mesmo usuario e repositorio, então hoje só é permitido um job/task simultaneo para o mesmo usuario/repositorio
