@@ -28,7 +28,9 @@ Quando surge o desafio de criar um serviço para agregar informações de uma se
  - **phoenix** o canhão do desenvolvimento web com alta gama de funcionalidades
  - **oban** para rodar diversos jobs assincronos e com retry e alta resiliencia
  - **ETS** para um caching super eficiente na maquina virtual do Erlang
-======
+
+#
+
 Mas analisando mais cuidadosamente o problema fiz as seguintes perguntas:
  - Vou lidar com muitos endpoints, sockets, channels e tudo o que há de bom?
      - Resposta: Não na verdade só terei um endpoint para enviar o **username** e o **repository** então uma abordagem mais simples talvez deva ser usar o **Plug** ao invés do phoenix pela simplicidade ao mesmo tempo em que o Plug é a base do phoenix que nada mais é que uma composição de simples plugs
