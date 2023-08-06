@@ -13,6 +13,15 @@ E rodar:
 ```
 mix run --no-halt
 ```
+## Sobre os endpoints
+A aplicação possui apenas um endpoint */tasks* 
+  - **[POST]** *http://localhost:4001/tasks*
+    - ```
+        {
+        	"username": "KevinDaSilvaS",
+        	"repository": "duper"
+        }
+      ``` 
 
 ## Sobre as escolhas tecnicas
 Quando surge o desafio de criar um serviço para agregar informações de uma serie de endpoint e envia-los de forma assincrona começamos a pensar nas tecnologias, e quais seriam o estado da arte e as primeiras que nos veem a mente são
