@@ -87,7 +87,7 @@ defmodule Integrations.GithubApiIntegration do
   end
 
   defp manage_call(nil, user), do: get_name(user)
-  defp manage_call(name, _user), do: {:ok, name}
+  defp manage_call(name, _user), do: name
 
   defp get_name(username) do
     url = "#{@api_url}/users/#{username}"
