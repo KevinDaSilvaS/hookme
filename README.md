@@ -24,13 +24,13 @@ A aplicação possui apenas um endpoint */tasks*
       ```
 
 ## Sobre o fluxo da arquitetura
-   [Uma request é feita com sucesso] -> [job é adicionado em uma task assincrona] -> [após o intervalo delimitado a task começa a rodar] -> [pega os dados no github] -> [envia para o endpoint] -> [mata o processo da task]
-                                                                                                                                                       |                          |                                  ^
-                                                                                                                                                       \/                         \/                                 |
-                                                                                                                                             [             caso falhe nessa etapa               ]                    |
-                                                                                                                                                                      |                                              |
-                                                                                                                                                                      \/                                             |
-                                                                                                                                          [ cria uma nova task para retentativa com um intervalo menor]   -----------|      
+   [Uma request é feita com sucesso] -> [job é adicionado em uma task assincrona] -> [após o intervalo delimitado a task começa a rodar] -> [pega os dados no github] -> [envia para o endpoint] -> [mata o processo da task]  <br> 
+                                                                                                                                                       |                          |                                  ^     <br> 
+                                                                                                                                                       \/                         \/                                 |       <br> 
+                                                                                                                                             [             caso falhe nessa etapa               ]                    |       <br> 
+                                                                                                                                                                      |                                              |       <br> 
+                                                                                                                                                                      \/                                             |       <br> 
+                                                                                                                                          [ cria uma nova task para retentativa com um intervalo menor]   -----------|        <br>    
 
 ## Sobre as escolhas tecnicas
 Quando surge o desafio de criar um serviço para agregar informações de uma serie de endpoint e envia-los de forma assincrona começamos a pensar nas tecnologias, e quais seriam o estado da arte e as primeiras que nos veem a mente são
