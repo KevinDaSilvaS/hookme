@@ -55,3 +55,4 @@ Mas analisando mais cuidadosamente o problema fiz as seguintes perguntas:
 
 ## Validações extras
   - [Impedir duplicadas] - Hoje se guarda cada job/task com uma chave *${username}/${repository}* com a intenção de impedir eventual ddos de multiplos jobs para o mesmo usuario e repositorio, então hoje só é permitido um job/task simultaneo para o mesmo usuario/repositorio
+  - [Impedir aobrecarga] - Pode se adicionar um rate limit na aplicação impedindo-a de criar mais de X jobs assincronos simultaneos
