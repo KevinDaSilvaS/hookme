@@ -16,6 +16,7 @@ mix run --no-halt
 
 ## Sobre os envs
   No arquivo docker-compose.yml existe uma série de variaveis que podemos usar para customizar a aplicação:
+  
       - **SCHEDULE_INTERVAL** -> *Representa o tempo de assincronicidade da request em milisegundos, ou seja quanto um processo vai precisar esperar para enviar as informações para o webhook*
       - **RESCHEDULE_INTERVAL** -> *Representa quanto tempo um processo de retentativa vai esperar em milisegundos, caso a primeira request falhe podemos setar a retentativa para occorrer x milisegundos após a primeira*
       - **RETRY_MAX_ATTEMPTS** -> *Representa quantas retentativas a aplicação tentará fazer para uma determinada task*
