@@ -13,6 +13,17 @@ E rodar:
 ```
 mix run --no-halt
 ```
+
+## Sobre os envs
+  No arquivo docker-compose.yml existe uma série de variaveis que podemos usar para customizar a aplicação:
+      - **SCHEDULE_INTERVAL** -> *Representa o tempo de assincronicidade da request em milisegundos, ou seja quanto um processo vai precisar esperar para enviar as informações para o webhook*
+      - **RESCHEDULE_INTERVAL** -> *Representa quanto tempo um processo de retentativa vai esperar em milisegundos, caso a primeira request falhe podemos setar a retentativa para occorrer x milisegundos após a primeira*
+      - **RETRY_MAX_ATTEMPTS** -> *Representa quantas retentativas a aplicação tentará fazer para uma determinada task*
+      - **WEBHOOK_URL** -> *A url do webhook para qual vamos mandar as informações nos jobs*
+      - **API_URL** -> *Link para a api desejada, no caso o link da api do github*
+      - **API_TOKEN** -> *Caso queira autenticar na api do github coloque o seu token de acesso aqui, caso queira usar a api do github sem autenticar apenas deixe essa variavel como: ""*
+  
+
 ## Sobre os endpoints
 A aplicação possui apenas um endpoint */tasks* 
   - **[POST]** *http://localhost:4001/tasks*
@@ -24,13 +35,7 @@ A aplicação possui apenas um endpoint */tasks*
       ```
 
 ## Sobre o fluxo da arquitetura
-   [Uma request é feita com sucesso] -> [job é adicionado em uma task assincrona] -> [após o intervalo delimitado a task começa a rodar] -> [pega os dados no github] -> [envia para o endpoint] -> [mata o processo da task]  <br> 
-                                                                                                                                                       |                          |                                  ^     <br> 
-                                                                                                                                                       \/                         \/                                 |       <br> 
-                                                                                                                                             [             caso falhe nessa etapa               ]                    |       <br> 
-                                                                                                                                                                      |                                              |       <br> 
-                                                                                                                                                                      \/                                             |       <br> 
-                                                                                                                                          [ cria uma nova task para retentativa com um intervalo menor]   -----------|        <br>    
+  arch image here
 
 ## Sobre as escolhas tecnicas
 Quando surge o desafio de criar um serviço para agregar informações de uma serie de endpoint e envia-los de forma assincrona começamos a pensar nas tecnologias, e quais seriam o estado da arte e as primeiras que nos veem a mente são
