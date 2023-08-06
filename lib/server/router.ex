@@ -8,7 +8,7 @@ defmodule Server.Router do
   plug(:dispatch)
   plug(Plug.Parsers, parsers: [:json], pass: ["application/json"], json_decoder: Jason)
 
-  post "/taskS" do
+  post "/tasks" do
     {:ok, req_body, conn} = Plug.Conn.read_body(conn, opts)
     {result, body} = Jason.decode!(req_body) |> TaskValidators.map_fields()
 
@@ -18,8 +18,15 @@ defmodule Server.Router do
         response(conn, code, Jason.encode!(body))
 
       :ok ->
-        Hookme.Sender.send_info(body)
-        response(conn, 200, Jason.encode!(%{ok: "task succesfully scheduled"}))
+        case TaskValidators.validate_rate_limit() do
+          {:error, body} ->
+            code = Map.get(body, :code)
+            response(conn, code, Jason.encode!(body))
+
+          _ -> Hookme.Sender.send_info(body)
+               response(conn, 200, Jason.encode!(%{ok: "task succesfully scheduled"}))
+        end
+
     end
   end
 

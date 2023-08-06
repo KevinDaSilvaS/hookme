@@ -17,3 +17,8 @@ config :hookme, Integrations.GithubApiIntegration,
 
 config :hookme, Integrations.WebhookIntegration,
   webhook_url: System.get_env("WEBHOOK_URL", "https://webhook.site/61a356f2-a04b-4b9b-b1cb-96668d4727d9")
+
+config :hookme, Limiter.Limiter,
+  rate_limit_max_simultaneous_jobs:
+    System.get_env("RATE_LIMIT_MAX_SIMULTANEOUS_JOBS", "-1")
+    |> String.to_integer()

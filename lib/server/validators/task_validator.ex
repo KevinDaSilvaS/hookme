@@ -9,4 +9,11 @@ defmodule Server.Validators.TaskValidators do
       true -> {:ok, %{username: username, repository: repository}}
     end
   end
+
+  def validate_rate_limit() do
+    case Limiter.Limiter.proceed_request?() do
+      false -> {:error, %{code: 429, error: "max simultaneous jobs"}}
+      _ -> {:ok, true}
+    end
+  end
 end
